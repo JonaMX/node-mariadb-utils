@@ -1,0 +1,38 @@
+{
+  "name"            : "alien-node-mysql-utils",
+  "version"         : "0.0.1",
+  "description"     : "Helper functions for MySQL on NodeJS",
+  "main"            : "lib/DB.js",
+  "dependencies"    : {
+    "ramda"            : "^0.17.x",
+    "mysql"            : "^2.7.x",
+    "q"                : "^2.0.x",
+    "moment"           : "^2.10.x",
+    "promise-matchers" : "0.9.x"
+  },
+  "devDependencies" : {
+    "coveralls" : "^2.11.2",
+    "istanbul"  : "^0.3.13",
+    "jasmine"   : "^2.3.1"
+  },
+  "scripts"         : {
+    "test" : "./node_modules/.bin/istanbul cover ./node_modules/.bin/jasmine"
+  },
+  "repository"      : {
+    "type" : "git",
+    "url"  : "https://github.com/aliencreations/alien-node-mysql-utils.git"
+  },
+  "keywords"        : [
+    "aliencreations",
+    "api",
+    "util",
+    "node",
+    "ramda"
+  ],
+  "author"          : "Sean Cannon",
+  "license"         : "MIT",
+  "bugs"            : {
+    "url" : "https://github.com/aliencreations/alien-node-mysql-utils/issues"
+  },
+  "homepage"        : "https://github.com/aliencreations/alien-node-mysql-utils"
+}
