@@ -86,7 +86,7 @@ var createAndExecuteQuery = function(id) {
   var query = 'SELECT * FROM accounts WHERE id = ?',
       queryStatement = [query, [id]];
 
-  return DB.query(queryStatement);
+  return DB.lookup(queryStatement);
 };
 
 /**
