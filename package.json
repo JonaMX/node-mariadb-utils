@@ -1,6 +1,6 @@
 {
   "name"            : "alien-node-mysql-utils",
-  "version"         : "0.0.6",
+  "version"         : "0.1.0",
   "description"     : "Helper functions for MySQL on NodeJS",
   "main"            : "lib/DB.js",
   "dependencies"    : {
