@@ -4,6 +4,6 @@ var prepareProvidedFieldsForSet = require('../lib/methods/prepareProvidedFieldsF
 
 describe('prepareProvidedFieldsForSet', function() {
   it('should make a prepared statement for each field', function() {
-    expect(prepareProvidedFieldsForSet(['foo', 'bar'])).toBe('bar = ?,foo = ?');
+    expect(prepareProvidedFieldsForSet(['foo', 'bar'])).toBe('`bar` = ?,`foo` = ?');
   });
 });
