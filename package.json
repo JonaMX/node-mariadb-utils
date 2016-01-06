@@ -1,10 +1,10 @@
 {
   "name"            : "alien-node-mysql-utils",
-  "version"         : "0.2.1",
+  "version"         : "0.2.2",
   "description"     : "Helper functions for MySQL on NodeJS",
   "main"            : "lib/DB.js",
   "dependencies"    : {
-    "ramda"            : "^0.18.x",
+    "ramda"            : "^0.19.x",
     "mysql"            : "^2.7.x",
     "q"                : "^2.0.x",
     "moment"           : "^2.10.x",
