@@ -21,6 +21,9 @@ $ npm test
 Make a SQL query in which you expect zero or more results. Returns a promise which
 either resolves to an array containing found records (as objects) or rejects if no records found. 
 
+#### querySafe()
+Same as query but resolves an empty array if no records found.
+
 ##### Suggested model usage: 
 ```js
 
@@ -53,7 +56,10 @@ function getAccountsByStatus(status) {
 module.exports = getAccountsByStatus;
 ```
 
-##### Suggested controller usage
+##### Suggested controller usage 
+
+*(using DB.query)*
+
 ```js
 
 var getAccountsByStatus = require('../models/getAccountsByStatus');
@@ -67,9 +73,27 @@ getAccountsByStatus('active').then(function(accounts) {
   
 ```
 
+*(using DB.querySafe)*
+
+```js
+
+var getAccountsByStatus = require('../models/getAccountsByStatus');
+
+getAccountsByStatus('active').then(function(maybeAccounts) {
+    // handle array of accounts or empty array here
+  })
+  .catch(function(err) {
+    // handle errors here
+  });
+  
+```
+
 #### lookup()
 Make a SQL query in which you expect zero or one result. Returns a promise which
 either resolves to an object matching the row schema or rejects if no records found. 
+
+#### lookupSafe()
+Same as lookup, but resolves `undefined` if no records are found. 
 
 ```js
 
@@ -103,6 +127,9 @@ module.exports = getAccountById;
 ```
 
 ##### Suggested controller usage
+
+*(using DB.lookup)*
+
 ```js
 
 var getAccountById = require('../models/getAccountById');
@@ -113,6 +140,22 @@ getAccountById(1234).then(function(account) {
   })
   .catch(function(err) {
     // handle "No records found" or other errors here
+  });
+  
+```
+
+*(using DB.lookupSafe)*
+
+```js
+
+var getAccountById = require('../models/getAccountById');
+
+
+getAccountById(1234).then(function(maybeAccount) {
+    // handle account object or undefined here
+  })
+  .catch(function(err) {
+    // handle errors here
   });
   
 ```
