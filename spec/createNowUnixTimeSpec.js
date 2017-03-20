@@ -1,9 +1,9 @@
 'use strict';
 
-var createNowUnixTime = require('../lib/methods/createNowUnixTime');
+const createNowUnixTime = require('../lib/methods/createNowUnixTime');
 
-describe('createNowUnixTime', function() {
-  it('should create a Unix time stamp', function() {
+describe('createNowUnixTime', () => {
+  it('creates a Unix time stamp', () => {
     expect(createNowUnixTime()).toBe(Math.floor(new Date().getTime() / 1000));
   });
 });

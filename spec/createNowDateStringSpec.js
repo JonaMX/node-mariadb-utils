@@ -1,19 +1,19 @@
 'use strict';
 
-var R = require('ramda');
+const R = require('ramda');
 
-var createNowDateString = require('../lib/methods/createNowDateString');
+const createNowDateString = require('../lib/methods/createNowDateString');
 
-var _getPrefixedMonth = function(date) {
+const _getPrefixedMonth = date => {
   return ('0' + (date.getMonth() + 1)).slice(-2);
 };
 
-var _getPrefixedDay = function(date) {
+const _getPrefixedDay = date => {
   return ('0' + date.getDate()).slice(-2);
 };
 
-var ymdFormatted = function() {
-  var date = new Date();
+const ymdFormatted = () => {
+  const date = new Date();
 
   return R.join('-', [
     date.getFullYear(),
@@ -22,8 +22,8 @@ var ymdFormatted = function() {
   ]);
 };
 
-describe('createNowDateString', function() {
-  it('should create a YYYY-MM-DD date string', function() {
+describe('createNowDateString', () => {
+  it('creates a YYYY-MM-DD date string', () => {
     expect(createNowDateString()).toBe(ymdFormatted())
   });
 });
