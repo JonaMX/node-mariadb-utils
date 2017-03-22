@@ -1,17 +1,17 @@
 'use strict';
 
-var ensureNotSingleItemArray = require('../lib/methods/ensureNotSingleItemArray');
+const ensureNotSingleItemArray = require('../lib/methods/ensureNotSingleItemArray');
 
-var FAKE_MULTI_ITEM_ARRAY  = ['foo', 'bar'],
-    FAKE_SINGLE_ITEM_ARRAY = ['foo'];
+const FAKE_MULTI_ITEM_ARRAY  = ['foo', 'bar'],
+      FAKE_SINGLE_ITEM_ARRAY = ['foo'];
 
-describe('ensureNotSingleItemArray', function() {
+describe('ensureNotSingleItemArray', () => {
 
-  it('should return the given array if it contains two or more items', function() {
+  it('returns the given array if it contains two or more items', () => {
     expect(ensureNotSingleItemArray(FAKE_MULTI_ITEM_ARRAY)).toBe(FAKE_MULTI_ITEM_ARRAY);
   });
 
-  it('should return the first item in a given array if the array contains only one item', function() {
+  it('returns the first item in a given array if the array contains only one item', () => {
     expect(ensureNotSingleItemArray(FAKE_SINGLE_ITEM_ARRAY)).toBe('foo');
   });
 

@@ -1,32 +1,32 @@
 'use strict';
 
-var Q = require('q');
+const Q = require('q');
 
-var resolveOrRejectOnBooleanField = require('../lib/methods/resolveOrRejectOnBooleanField');
+const resolveOrRejectOnBooleanField = require('../lib/methods/resolveOrRejectOnBooleanField');
 
-describe('resolveOrRejectOnBooleanField', function() {
-  it('should resolve when given a true field', function(done) {
-    var deferred = Q.defer();
+describe('resolveOrRejectOnBooleanField', () => {
+  it('resolves when given a true field', (done) => {
+    const deferred = Q.defer();
 
-    resolveOrRejectOnBooleanField(deferred, 'foo', { foo : true }).then(function(bool) {
+    resolveOrRejectOnBooleanField(deferred, 'foo', { foo : true }).then((bool) => {
       expect(bool).toBe(true);
       done();
     });
   });
 
-  it('should reject when given a false field', function(done) {
-    var deferred = Q.defer();
+  it('rejects when given a false field', (done) => {
+    const deferred = Q.defer();
 
-    resolveOrRejectOnBooleanField(deferred, 'foo', { foo : false }).catch(function(bool) {
+    resolveOrRejectOnBooleanField(deferred, 'foo', { foo : false }).catch((bool) => {
       expect(bool).toBe(false);
       done();
     });
   });
 
-  it('should reject when given an unrecognized field', function() {
-    var deferred = Q.defer();
+  it('rejects when given an unrecognized field', () => {
+    const deferred = Q.defer();
 
-    expect(function() {
+    expect(() => {
       resolveOrRejectOnBooleanField(deferred, 'bar', {foo : true});
     }).toThrow(new Error('No field found matching "bar"'));
   });

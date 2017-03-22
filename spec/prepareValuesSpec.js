@@ -1,19 +1,19 @@
 'use strict';
 
-var prepareValues = require('../lib/methods/prepareValues');
+const prepareValues = require('../lib/methods/prepareValues');
 
-var FAKE_LOCATION_ID = 1,
-    FAKE_FIRST_NAME  = 'Sean',
-    FAKE_LAST_NAME   = 'Cannon',
-    FAKE_EMAIL       = 'alienwebguy@gmailz.com',
-    FAKE_PHONE       = '763-807-9338',
-    FAKE_ADDRESS     = '2304 DeMartini Lane',
-    FAKE_CITY        = 'Brentwood',
-    FAKE_STATE       = 'CA',
-    FAKE_ZIP         = '94513',
-    FAKE_COUNTRY     = 'US';
+const FAKE_LOCATION_ID = 1,
+      FAKE_FIRST_NAME  = 'Sean',
+      FAKE_LAST_NAME   = 'Cannon',
+      FAKE_EMAIL       = 'alienwebguy@gmailz.com',
+      FAKE_PHONE       = '763-807-9338',
+      FAKE_ADDRESS     = '2304 DeMartini Lane',
+      FAKE_CITY        = 'Brentwood',
+      FAKE_STATE       = 'CA',
+      FAKE_ZIP         = '94513',
+      FAKE_COUNTRY     = 'US';
 
-var FAKE_UNSORTED_VALUES_OBJECT  = {
+const FAKE_UNSORTED_VALUES_OBJECT = {
   locationId : 1,
   firstName  : FAKE_FIRST_NAME,
   lastName   : FAKE_LAST_NAME,
@@ -26,7 +26,7 @@ var FAKE_UNSORTED_VALUES_OBJECT  = {
   country    : FAKE_COUNTRY
 };
 
-var FAKE_SORTED_VALUES_ARRAY = [
+const FAKE_SORTED_VALUES_ARRAY = [
   FAKE_ADDRESS,
   FAKE_CITY,
   FAKE_COUNTRY,
@@ -39,8 +39,8 @@ var FAKE_SORTED_VALUES_ARRAY = [
   FAKE_ZIP
 ];
 
-describe('prepareValues', function() {
-  it('should ensure provided data is prepped for DB insertion', function() {
+describe('prepareValues', () => {
+  it('ensures provided data is prepped for DB insertion', () => {
     expect(prepareValues(FAKE_UNSORTED_VALUES_OBJECT)).toEqual(FAKE_SORTED_VALUES_ARRAY);
   });
 });

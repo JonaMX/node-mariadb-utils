@@ -1,38 +1,38 @@
 'use strict';
 
-var R = require('ramda');
+const R = require('ramda');
 
-var transformQueryResponse = require('../lib/methods/transformQueryResponse');
+const transformQueryResponse = require('../lib/methods/transformQueryResponse');
 
-var fakeRecordBefore = {
+const fakeRecordBefore = {
   first_name : 'John',
   last_name  : 'Doe'
 };
 
-var fakeRecordAfter = {
+const fakeRecordAfter = {
   firstName : 'John',
   lastName  : 'Doe'
 };
 
-var makeFakeRecord = function() {
+const makeFakeRecord = () => {
   return R.merge(fakeRecordBefore, {});
 };
 
-var fakeQueryResponse  = [makeFakeRecord(), makeFakeRecord()],
-    fakeLookupResponse = makeFakeRecord();
+const fakeQueryResponse  = [makeFakeRecord(), makeFakeRecord()],
+      fakeLookupResponse = makeFakeRecord();
 
-describe('transformQueryResponse', function() {
+describe('transformQueryResponse', () => {
 
-  it('should transform all strings from the case used ' +
+  it('transforms all strings from the case used ' +
     'for MySQL fields to the case used for JS variables ' +
-    'in a given object', function() {
+    'in a given object', () => {
     expect(transformQueryResponse(fakeLookupResponse))
       .toEqual(fakeRecordAfter);
   });
 
-  it('should transform all strings from the case used ' +
+  it('transforms all strings from the case used ' +
     'for MySQL fields to the case used for JS variables ' +
-    'in a given array of objects', function() {
+    'in a given array of objects', () => {
     expect(transformQueryResponse(fakeQueryResponse))
       .toEqual([fakeRecordAfter, fakeRecordAfter]);
   });
