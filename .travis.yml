@@ -1,5 +1,5 @@
 language: node_js
 node_js:
-  - "6.2"
+  - 6
 after_script:
   - "./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info"
