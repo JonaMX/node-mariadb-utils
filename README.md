@@ -222,8 +222,8 @@ const ensurePositiveTransfer = amount => connection => {
     return connection;
   } else {
       throw { 
-        error      : new Error('What are you doing?' ),
-        connection : transaction.connection
+        error : new Error('What are you doing?'),
+        connection
       };
   };
 };
