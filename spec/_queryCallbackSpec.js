@@ -172,6 +172,7 @@ describe('_queryCallback', () => {
 
     deferred.promise.then(res => {
       expect(res).toEqual([]);
+      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
       done();
     });
 
@@ -183,6 +184,26 @@ describe('_queryCallback', () => {
       ALLOW_EMPTY_RESPONSE_TRUE
     )(null, []);
   });
+
+  it('invokes a transaction, querySafe() callback with no errors on an empty response', done => {
+
+    const deferred = Q.defer();
+
+    deferred.promise.then(res => {
+      expect(res).toEqual([]);
+      expect(FAKE_CONNECTION.release).not.toHaveBeenCalled();
+      done();
+    });
+
+    _queryCallback(
+      deferred,
+      FAKE_CONNECTION,
+      IS_TRANSACTION_TRUE,
+      SINGLE_RETURN_ITEM_FALSE,
+      ALLOW_EMPTY_RESPONSE_TRUE
+    )(null, []);
+  });
+
 
   it('invokes a non-transaction, querySafe() callback with no errors on a single-item array', done => {
 
