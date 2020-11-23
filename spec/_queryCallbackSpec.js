@@ -1,7 +1,6 @@
 'use strict';
 
-const Q = require('q'),
-      R = require('ramda');
+const Q = require('q');
 
 const constants      = require('../lib/constants'),
       _queryCallback = require('../lib/methods/_queryCallback');
@@ -27,14 +26,12 @@ const IS_TRANSACTION_FALSE       = false,
       ALLOW_EMPTY_RESPONSE_TRUE  = true;
 
 describe('_queryCallback', () => {
-
   beforeEach(() => {
     spyOn(FAKE_CONNECTION, 'rollback');
     spyOn(FAKE_CONNECTION, 'release');
   });
 
   it('invokes a transactional queryOnTransaction() callback with no errors on a multi-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -53,7 +50,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a transactional, queryOnTransaction() callback with errors on a multi-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -72,7 +68,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, query() callback with no errors on a multi-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -91,7 +86,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, query() callback with no errors on an empty result', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -110,7 +104,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, query() callback with no errors on a single-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -129,7 +122,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, query() callback with no errors on a response object', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -148,7 +140,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, querySafe() callback with no errors on a multi-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -167,7 +158,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, querySafe() callback with no errors on an empty response', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -186,7 +176,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a transaction, querySafe() callback with no errors on an empty response', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -206,7 +195,6 @@ describe('_queryCallback', () => {
 
 
   it('invokes a non-transaction, querySafe() callback with no errors on a single-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -225,7 +213,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, querySafe() callback with no errors on a response object', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -245,7 +232,6 @@ describe('_queryCallback', () => {
 
 
   it('invokes a non-transaction, lookup() callback with no errors on a multi-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -264,7 +250,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, lookup() callback with no errors on an empty response', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -283,7 +268,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, lookup() callback with no errors on a single-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -302,7 +286,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, lookup() callback with no errors on a response object', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -321,7 +304,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, lookupSafe() callback with no errors on a multi-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -340,7 +322,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, lookupSafe() callback with no errors on an empty response', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -358,7 +339,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, lookupSafe() callback with no errors on a single-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -377,7 +357,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, lookupSafe() callback with no errors on a response object', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.then(res => {
@@ -396,7 +375,6 @@ describe('_queryCallback', () => {
   });
 
   it('handles a duplicate-record error no differently than other errors', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -414,46 +392,7 @@ describe('_queryCallback', () => {
     )(FAKE_DUPLICATE_RECORD_ERROR);
   });
 
-  it('invokes a non-transaction, query() callback with errors on a multi-item array', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_FALSE,
-      ALLOW_EMPTY_RESPONSE_FALSE
-    )(FAKE_ERROR);
-  });
-
-  it('invokes a non-transaction, query() callback with errors on a single-item array', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_FALSE,
-      ALLOW_EMPTY_RESPONSE_FALSE
-    )(FAKE_ERROR);
-  });
-
-  it('invokes a non-transaction, query() callback with errors on a response object', done => {
-
+  it('invokes a non-transaction, query() callback with errors', done => {
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -472,7 +411,6 @@ describe('_queryCallback', () => {
   });
 
   it('invokes a non-transaction, querySafe() callback with errors on a multi-item array', done => {
-
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -490,47 +428,7 @@ describe('_queryCallback', () => {
     )(FAKE_ERROR);
   });
 
-  it('invokes a non-transaction, querySafe() callback with errors on a single-item array', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_FALSE,
-      ALLOW_EMPTY_RESPONSE_TRUE
-    )(FAKE_ERROR);
-  });
-
-  it('invokes a non-transaction, querySafe() callback with errors on a response object', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_FALSE,
-      ALLOW_EMPTY_RESPONSE_TRUE
-    )(FAKE_ERROR);
-  });
-
-
-  it('invokes a non-transaction, lookup() callback with errors on a multi-item array', done => {
-
+  it('invokes a non-transaction, lookup() callback with errors', done => {
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -548,46 +446,7 @@ describe('_queryCallback', () => {
     )(FAKE_ERROR);
   });
 
-  it('invokes a non-transaction, lookup() callback with errors on a single-item array', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_TRUE,
-      ALLOW_EMPTY_RESPONSE_FALSE
-    )(FAKE_ERROR);
-  });
-
-  it('invokes a non-transaction, lookup() callback with errors on a response object', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_TRUE,
-      ALLOW_EMPTY_RESPONSE_FALSE
-    )(FAKE_ERROR);
-  });
-
-  it('invokes a non-transaction, lookupSafe() callback with errors on a multi-item array', done => {
-
+  it('invokes a non-transaction, lookupSafe() callback with errors', done => {
     const deferred = Q.defer();
 
     deferred.promise.catch(err => {
@@ -604,43 +463,4 @@ describe('_queryCallback', () => {
       ALLOW_EMPTY_RESPONSE_TRUE
     )(FAKE_ERROR);
   });
-
-  it('invokes a non-transaction, lookupSafe() callback with errors on a single-item array', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_TRUE,
-      ALLOW_EMPTY_RESPONSE_TRUE
-    )(FAKE_ERROR);
-  });
-
-  it('invokes a non-transaction, lookupSafe() callback with errors on a response object', done => {
-
-    const deferred = Q.defer();
-
-    deferred.promise.catch(err => {
-      expect(err).toEqual(constants.errors.UNKNOWN(FAKE_ERROR.message));
-      expect(FAKE_CONNECTION.release).toHaveBeenCalled();
-      done();
-    });
-
-    _queryCallback(
-      deferred,
-      FAKE_CONNECTION,
-      IS_TRANSACTION_FALSE,
-      SINGLE_RETURN_ITEM_TRUE,
-      ALLOW_EMPTY_RESPONSE_TRUE
-    )(FAKE_ERROR);
-  });
-
 });
