@@ -1,13 +1,12 @@
-# node-mariadb-utils
-![Tests](https://github.com/JonaMX/node-mariadb-utils/actions/workflows/tests.yml/badge.svg)
+# alien-node-mysql-utils
+Helper functions for MySql on NodeJS. The functions are pure and curried with Ramda.
 
-
-Helper functions for MariaDB on NodeJS. The functions are pure and curried with Ramda.
+[![Build Status](https://travis-ci.org/AlienCreations/alien-node-mysql-utils.svg?branch=master)](https://travis-ci.org/AlienCreations/alien-node-mysql-utils) [![Coverage Status](https://coveralls.io/repos/AlienCreations/alien-node-mysql-utils/badge.svg?branch=master&service=github)](https://coveralls.io/github/AlienCreations/alien-node-mysql-utils?branch=master) [![npm version](http://img.shields.io/npm/v/alien-node-mysql-utils.svg)](https://npmjs.org/package/alien-node-mysql-utils) [![Dependency Status](https://david-dm.org/AlienCreations/alien-node-mysql-utils.svg)](https://david-dm.org/AlienCreations/alien-node-mysql-utils)
 
 ## Install
 
 ```
-$ npm install node-mariadb-utils --save
+$ npm install alien-node-mysql-utils --save
 ```
 
 Run the specs
@@ -30,11 +29,11 @@ Same as query but resolves an empty array if no records found.
 
 'use strict';
 
-const mariadb = require('mariadb'),
-      config  = require('config'),
-      dbPool  = mariadb.createPool(config.mariadb);
+const mysql  = require('mysql'),
+      config = require('config'),
+      dbPool = mysql.createPool(config.mysql);
 
-const DB                  = require('node-mariadb-utils')(dbPool),
+const DB                  = require('alien-node-mysql-utils')(dbPool),
       validateAccountData = require('../some-validator');
 
 const createAndExecuteQuery = (status) => {
@@ -100,11 +99,11 @@ Same as lookup, but resolves `undefined` if no records are found.
 
 'use strict';
 
-const mariadb = require('mariadb'),
-      config  = require('config'),
-      dbPool  = mariadb.createPool(config.mariadb);
+const mysql  = require('mysql'),
+      config = require('config'),
+      dbPool = mysql.createPool(config.mysql);
 
-const DB                  = require('node-mariadb-utils')(dbPool),
+const DB                  = require('alien-node-mysql-utils')(dbPool),
       validateAccountData = require('../some-validator');
 
 const createAndExecuteQuery = id => {
@@ -176,7 +175,7 @@ These methods have a unique signature compared to the other methods for querying
 This method will use the curried `dbPool` object provided during require...
 
 ```js
-const DB = require('node-mariadb-utils')(dbPool);
+const DB = require('alien-node-mysql-utils')(dbPool);
 ```
 
 ... and call the native `getConnection()` on it, then resolve the connection on its promise.
@@ -202,7 +201,7 @@ resolves `true` if there are no errors, otherwise it rejects the promise with wh
 ##### Suggested wrapper-model usage for transactions
 
 ```js
-const DB = require('node-mariadb-utils')(dbPool);
+const DB = require('alien-node-mysql-utils')(dbPool);
 
 const getUserBalance = id => connection => {
     const query          = 'SELECT balance FROM users WHERE id = ?',
@@ -265,3 +264,5 @@ DB.beginTransaction()
   });
 
 ```
+## TODO
+ - Make the transform to/from column methods unbiased with decorator injection

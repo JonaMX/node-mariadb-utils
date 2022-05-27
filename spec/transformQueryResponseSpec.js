@@ -24,14 +24,14 @@ const fakeQueryResponse  = [makeFakeRecord(), makeFakeRecord()],
 describe('transformQueryResponse', () => {
 
   it('transforms all strings from the case used ' +
-    'for MariaDB fields to the case used for JS variables ' +
+    'for MySQL fields to the case used for JS variables ' +
     'in a given object', () => {
     expect(transformQueryResponse(fakeLookupResponse))
       .toEqual(fakeRecordAfter);
   });
 
   it('transforms all strings from the case used ' +
-    'for MariaDB fields to the case used for JS variables ' +
+    'for MySQL fields to the case used for JS variables ' +
     'in a given array of objects', () => {
     expect(transformQueryResponse(fakeQueryResponse))
       .toEqual([fakeRecordAfter, fakeRecordAfter]);

@@ -24,7 +24,7 @@ describe('connectionHandle', () => {
     setTimeout(() => {
       expect(FAKE_CONNECTION.query).toHaveBeenCalled();
       done();
-    }, 10);
+    }, 1);
   });
 
   it('rejects when connection is missing', done => {
@@ -38,7 +38,7 @@ describe('connectionHandle', () => {
     setTimeout(() => {
       expect(FAKE_DEFERRED.reject).toHaveBeenCalled();
       done();
-    }, 10);
+    }, 1);
   });
 
   it('rolls back transaction when there is an error AND a connection, which should never happen', done => {
@@ -52,7 +52,7 @@ describe('connectionHandle', () => {
     setTimeout(() => {
       expect(FAKE_CONNECTION.rollback).toHaveBeenCalled();
       done();
-    }, 10);
+    }, 1);
   });
 
   it('rolls back transaction when there is an error and no connection', done => {
@@ -66,7 +66,7 @@ describe('connectionHandle', () => {
     setTimeout(() => {
       expect(FAKE_CONNECTION.rollback).toHaveBeenCalled();
       done();
-    }, 10);
+    }, 1);
   });
 
   it('rolls back transaction when credentials are bad', done => {
@@ -80,7 +80,7 @@ describe('connectionHandle', () => {
     setTimeout(() => {
       expect(FAKE_CONNECTION.rollback).toHaveBeenCalled();
       done();
-    }, 100);
+    }, 1);
   });
 
   it('releases the connection when there is an error with no transaction', done => {
@@ -94,6 +94,6 @@ describe('connectionHandle', () => {
     setTimeout(() => {
       expect(FAKE_CONNECTION.release).toHaveBeenCalled();
       done();
-    }, 10);
+    }, 1);
   });
 });
