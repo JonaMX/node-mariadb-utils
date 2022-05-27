@@ -55,20 +55,6 @@ describe('connectionHandle', () => {
     }, 10);
   });
 
-  it('rolls back transaction when there is an error and no connection', done => {
-    _connectionHandle(
-      FAKE_DEFERRED,
-      FAKE_QUERY_STATEMENT,
-      FAKE_TRANSACTION,
-      FAKE_SINGLE_RETURN_ITEM,
-      FAKE_ALLOW_EMPTY_RESPONSE
-    )(FAKE_ERROR, FAKE_CONNECTION);
-    setTimeout(() => {
-      expect(FAKE_CONNECTION.rollback).toHaveBeenCalled();
-      done();
-    }, 10);
-  });
-
   it('rolls back transaction when credentials are bad', done => {
     _connectionHandle(
       FAKE_DEFERRED,

@@ -25,12 +25,14 @@ describe('resolveOrRejectOnBooleanField', () => {
       });
   });
 
-  it('rejects when given an unrecognized field', () => {
+  it('rejects when given an unrecognized field', done => {
     new Promise((resolve, reject) => {
-      expect(() => {
-        resolveOrRejectOnBooleanField({ resolve, reject }, 'bar', { foo : true });
-      })
-        .toThrow(new Error('No field found matching "bar"'));
-    });
+      resolveOrRejectOnBooleanField({ resolve, reject }, 'bar', { foo : true });
+    })
+      .then(done.fail)
+      .catch(err => {
+        expect(err.message).toBe('No field found matching "bar"');
+        done();
+      });
   });
 });
