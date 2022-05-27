@@ -1,38 +1,36 @@
 {
-  "name": "alien-node-mysql-utils",
-  "version": "0.5.11",
-  "description": "Helper functions for MySQL on NodeJS",
+  "name": "node-mariadb-utils",
+  "version": "1.0.0",
+  "description": "Helper functions for MariaDB on NodeJS",
   "main": "lib/DB.js",
   "dependencies": {
-    "aybabtu": "*",
-    "moment": "^2.11.2",
-    "mysql": "^2.15.x",
-    "q": "^2.0.x",
-    "ramda": "^0.x.x"
+    "aybabtu": "^1.1.6",
+    "moment": "^2.29.3",
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.13",
-    "jasmine": "^2.3.1"
+    "coveralls": "^3.1.1",
+    "istanbul": "^0.4.5",
+    "jasmine": "^4.1.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aliencreations/alien-node-mysql-utils.git"
+    "url": "https://github.com/jonamx/node-mariadb-utils.git"
   },
   "keywords": [
-    "aliencreations",
+    "mariadb",
     "api",
     "util",
     "node",
     "ramda"
   ],
-  "author": "Sean Cannon",
+  "author": "Jonatan Juarez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aliencreations/alien-node-mysql-utils/issues"
+    "url": "https://github.com/jonamx/node-mariadb-utils/issues"
   },
-  "homepage": "https://github.com/aliencreations/alien-node-mysql-utils"
+  "homepage": "https://github.com/jonamx/node-mariadb-utils"
 }
